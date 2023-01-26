@@ -44,14 +44,14 @@ public class ProductoController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		c.setPrecio(Math.round(c.getPrecio()* 100.0 )/ 100.0);
-		c.setValorCompra(c.getCantidad() * c.getPrecio());
+		c.setValorCompra(Math.round((c.getCantidad() * c.getPrecio())*1000.0)/1000.0);
 		
 		if(c.getValorCompra()>50) {
 			c.setTotal(c.getValorCompra()-(c.getValorCompra()*0.10));
 				
 			c.setTotal(Math.round(((c.getTotal()*1.12)* 1000.0 ))/ 1000.0);
 		}else {
-			c.setTotal(c.getValorCompra()-1.12);
+			c.setTotal(Math.round((c.getValorCompra()*1.12)* 1000.0 )/ 1000.0);
 		}
 		
 		Producto asig = productoService.save(c);
@@ -72,21 +72,20 @@ public class ProductoController {
 		} else {
 			try {
 				producto.setDescripcion(c.getDescripcion());
-				
+				producto.setCantidad(c.getCantidad());
+				producto.setPrecio(Math.round(c.getPrecio() * 100.0 )/ 100.0);
 				if(c.getPrecio()<=0 || c.getCantidad()<=0) {
 					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 				}
-				producto.setPrecio(Math.round(c.getPrecio()* 100.0 )/ 100.0);
-				producto.setValorCompra(c.getCantidad() * c.getPrecio());
-				
+				producto.setValorCompra(Math.round((c.getCantidad() * c.getPrecio())*100.0)/100.0);
 				if(producto.getValorCompra()>50) {
 					producto.setTotal(producto.getValorCompra()-(producto.getValorCompra()*0.10));
 						
-					producto.setTotal(Math.round(((producto.getTotal()*1.12)* 1000.0 ))/ 1000.0);
+					producto.setTotal(Math.round(((producto.getTotal()*1.12)* 100.0 ))/ 100.0);
 				}else {
-					c.setTotal(Math.round((producto.getValorCompra()-1.12)*1000.0)/1000.0);
+					producto.setTotal(Math.round((producto.getValorCompra()*1.12)*100.0)/100.0);
 				}
-				return new ResponseEntity<>(productoService.save(producto), HttpStatus.NO_CONTENT);
+				return new ResponseEntity<>(productoService.save(producto), HttpStatus.CREATED);
 			} catch (Exception e) {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
