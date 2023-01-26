@@ -25,6 +25,7 @@ public class Producto{
 	@NotEmpty(message="*Campo Obligatorio, no debe estar vacio")
 	@Column(length = 100)
 	private String descripcion;
+	@Column(precision = 10, scale = 2)
 	private double precio;
 	private int cantidad;
 	//Atributos calculados

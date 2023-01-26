@@ -1,0 +1,10 @@
+//Enlace al documento
+https://docs.google.com/document/d/1os6q0SSN8m0BdgWF7klCE9XTneT8RJZwh1_mc2ZPUtA/edit?usp=sharing
+
+
+//inserts
+INSERT INTO producto (descripcion, precio, cantidad) VALUES ( "Papa", 14, 12);
+INSERT INTO producto (descripcion, precio, cantidad) VALUES ( "Jugo", 15, 8);
+INSERT INTO producto (descripcion, precio, cantidad) VALUES ( "Coca", 16, 5);
+INSERT INTO producto (descripcion, precio, cantidad) VALUES ( "Tomate", 13, 2);
+INSERT INTO producto (descripcion, precio, cantidad) VALUES ( "Cebolla", 12, 1);

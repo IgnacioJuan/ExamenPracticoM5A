@@ -44,14 +44,14 @@ public class ProductoController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		c.setPrecio(Math.round(c.getPrecio()* 100.0 )/ 100.0);
-		c.setValorCompra(Math.round((c.getCantidad() * c.getPrecio())*1000.0)/1000.0);
+		c.setValorCompra(Math.round((c.getCantidad() * c.getPrecio())*100.0)/100.0);
 		
 		if(c.getValorCompra()>50) {
 			c.setTotal(c.getValorCompra()-(c.getValorCompra()*0.10));
 				
-			c.setTotal(Math.round(((c.getTotal()*1.12)* 1000.0 ))/ 1000.0);
+			c.setTotal(Math.round(((c.getTotal()*1.12)* 100.0 ))/ 100.0);
 		}else {
-			c.setTotal(Math.round((c.getValorCompra()*1.12)* 1000.0 )/ 1000.0);
+			c.setTotal(Math.round((c.getValorCompra()*1.12)* 100.0 )/ 100.0);
 		}
 		
 		Producto asig = productoService.save(c);
